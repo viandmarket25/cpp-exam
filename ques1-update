@@ -1,0 +1,58 @@
+#include <stdlib.h>
+#include <iostream>
+#include <time.h>
+#include <iostream>
+using namespace std;
+class Circle{
+    double valueX, valueY, r;
+public:
+    Circle(double valueX1) {
+        r = valueX1;
+    }
+    Circle() {
+    }
+    double area(){
+        return 3.1415 * r* r;
+    }
+    double circumference(){
+        return 2.0 * 3.1415 * r;
+    }
+    bool operator > (Circle &c2) {
+        return this -> r > c2.r;
+    }
+    bool operator == (Circle &c2) {
+        return this -> r == c2.r;
+    }
+    void setR(double r1){
+        r = r1;
+    }
+    double getR() {
+        return r;
+    }
+    void show(Circle one,Circle two,double a,double b){
+        cout<<"c6: Radius="<<a<<"Circum="<<one.circumference()<<"Area="<<one.area()<< endl;
+        cout<<"c6: Radius="<<b<<"Circum="<<two.circumference()<<"Area="<<two.area()<< endl;
+    }
+};
+int main( ){
+    double c6rad,c7rad;
+    Circle c1(20);
+    Circle c2(10);
+    Circle c3,c4,c5,c6,c7;
+    c3.setR(c1.getR()+c2.getR());
+    cout<<"c3="<<c3.getR()<<endl;
+    c4.setR( c4.getR()+c1.getR());
+    cout<<"c4="<<c4.getR()<<endl;
+    c5.setR(c1.getR()+c2.getR());
+    cout<<"c5="<<c5.getR()<<endl;
+    cout<<"enter radius for c6 and c7:";
+    cin>>c6rad>>c7rad;
+    c6.setR(c6rad);
+    c7.setR(c7rad);
+    if(c6>c7)
+        cout<<"c6 is larger than c7"<<endl;
+    else
+        cout<<"c6 is smaller than c7"<<endl;
+    c6.show(c6,c7,c6rad, c7rad);
+    return 0;
+}
