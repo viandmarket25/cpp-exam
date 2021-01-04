@@ -1,0 +1,66 @@
+//----18511160023 EMETUCHE WINNER CHIDIUTO
+//----Final Examination,
+#include <stdlib.h>
+#include <iostream>
+#include <unistd.h>
+#include <curses.h>
+#include <string.h>
+#include <unistd.h>
+#include <sys/select.h>
+#include <termios.h>
+#include <chrono>
+#include <ctime>
+#include <time.h>
+#include <iostream>
+using namespace std;
+class Circle{
+    double valueX, valueY, r;
+public:
+    Circle(double valueX1) {
+        r = valueX1;
+    }
+    Circle() {
+       
+    }
+    double area(){
+        return 3.1415 * r* r;
+    }
+    double circumference(){
+        return 2.0 * 3.1415 * r;
+    }
+    bool operator > (Circle &c2) {
+        return this -> r > c2.r;
+    }
+    bool operator == (Circle &c2) {
+        return this -> r == c2.r;
+    }
+    void setR(double r1){
+        r = r1;
+    }
+    double getR() {
+        return r;
+    }
+};
+int main( ){
+    double valuec6,valuec7;
+    Circle c1(20);
+    Circle c2(10);
+    Circle c3,c4,c5,c6,c7;
+    c3.setR(c1.getR()+c2.getR());
+    cout<<"c3="<<c3.getR()<<endl;
+    c4.setR( c4.getR()+c1.getR());
+    cout<<"c4="<<c4.getR()<<endl;
+    c5.setR(c1.getR()+c2.getR());
+    cout<<"c5="<<c5.getR()<<endl;
+    cout<<"enter radius for c6 and c7:";
+    cin>>valuec6>>valuec7;
+    c6.setR(valuec6);
+    c7.setR(valuec7);
+    if(c6>c7)
+        cout<<"c6 is larger than c7"<<endl;
+    else
+        cout<<"c6 is smaller than c7"<<endl;
+    cout<<"c6: Radius="<<valuec6<<"Circum="<<c6.circumference()<<"Area="<<c6.area()<< endl;
+    cout<<"c7: Radius="<<valuec7<<"Circum="<<c7.circumference()<<"Area="<<c7.area()<< endl;
+    return 0;
+}
