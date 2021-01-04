@@ -1,0 +1,32 @@
+#include<iostream>
+using namespace std;
+void area(float);
+void circumference(float);
+int main()
+{
+	float radius;
+	int choice;
+	cout<<"Enter Radius of Circle: ";
+	cin>>radius;
+	cout<<"Enter Your Choice 1 for Area and 2 for Circumference:";
+	cin>>choice;
+	
+	if(choice==1)
+	  area(radius);
+	else if(choice==2)
+	  circumference(radius);
+	else
+	  cout<<"Wrong choice!";
+	
+	return 0;
+}
+
+
+void area(float r)
+{
+	cout<<"Area of Circle="<<(3.1415 * r* r);
+}
+void circumference(float r)
+{
+	cout<<"Circumferenceb of Circle="<<(2.0 * 3.1415 * r);
+}
