@@ -14,7 +14,6 @@
 #include <time.h>
 #include <iostream>
 using namespace std;
-// 1 for student,2 for teacher,3 for worker, 4 for ....
 class Student{
     char ID[20];
     char name[20];
@@ -85,32 +84,33 @@ class Teacher{
     void SetName(char name1[]) {
         strcpy(name,name1);
     }
-    void SetCitizenID(char citizenID[]) {
-        strcpy(citizenID,citizenID);
+    void SetCitizenID(char citizenID_[]) {
+        strcpy(citizenID,citizenID_);
     }
-    void SetSalary(double salary) {
-        salary =salary;
+    void SetSalary(double salary_) {
+        salary =salary_;
+    }
+    double GetSalary() {
+       return salary;
     }
     char *GetName() { return name;}
     char *GetCitizenID() {
         return citizenID;
     }
-    void SetID(char id[]) {
-        strcpy(ID,id);
+    void SetID(char id_[]) {
+        strcpy(ID,id_);
     }
     char *GetID(){ return ID;}
 };
 int main( ){
     bool continueTest=true;
-    int studentBucket=0;
+    int maximumBucket=100;
     int studentPosition=0;
-    int teacherBucket=0;
     int teacherPosition=0;
     int choice=11;
-    Student eachStudent[studentBucket];
-    Teacher eachTeacher[studentBucket];
-    
-    while(continueTest){
+    Student eachStudent[maximumBucket];
+    Teacher eachTeacher[maximumBucket];
+    while(continueTest && studentPosition<maximumBucket ){
         cout<<endl<<"******** Choose an Option below to perform test   ********"<<endl;
         cout<<"********  0 Exit  ********"<<endl;
         cout<<"********  1 Add Student  ********"<<endl;
@@ -123,7 +123,7 @@ int main( ){
         int type;
         char citizenID[30];
         int mark;
-        
+        double salary;
         cin>>choice;
         switch(choice) {
             case 0  :
@@ -131,7 +131,6 @@ int main( ){
                 exit(0);
                 break;
             case 1  :
-                studentBucket+=1;
                 cout<<"******** Let us add a Student          **********"<<endl;
                 cout<<"Enter the ID, Name, type, mark and CitizenID of Student"<<endl;
                 cin>>ID;
@@ -144,53 +143,49 @@ int main( ){
                 eachStudent[studentPosition].SetType(type);
                 eachStudent[studentPosition].SetMark(mark);
                 eachStudent[studentPosition].SetCitizenID(citizenID);
-                cout<< ID<<" "<<name <<" "<< type<< mark<<" "<< citizenID<<endl;
                 studentPosition+=1;
-                
                 break;
             case 2  :
-                teacherPosition+=1;
                 cout<<"******** Let us add a Teacher          **********"<<endl;
                 cout<<"Enter the ID, Name, type, mark and CitizenID of Teacher"<<endl;
                 cin>>ID;
                 cin>>name;
-                type=2;
                 cin>>citizenID;
-                cin>>mark;
-                eachStudent[studentPosition].SetID(ID);
-                eachStudent[studentPosition].SetName(name);
-                eachStudent[studentPosition].SetType(type);
-                eachStudent[studentPosition].SetMark(mark);
-                eachStudent[studentPosition].SetCitizenID(citizenID);
-               
-                cout<< ID<<" "<<name <<" "<< type<< mark<<" "<< citizenID<<endl;
-                
-                
+                cin>>salary;
+                type=2;
+                eachTeacher[teacherPosition].SetID(ID);
+                eachTeacher[teacherPosition].SetName(name);
+                eachTeacher[teacherPosition].SetType(type);
+                eachTeacher[teacherPosition].SetSalary(salary);
+                eachTeacher[teacherPosition].SetCitizenID(citizenID);
+                cout<< ID<<" "<<name <<" "<< type<< salary<<" "<< citizenID<<endl;
                 teacherPosition+=1;
-                teacherBucket+=1;
-                 
                 break;
             case 3  :
                 cout<<"******** Let us List all Students          **********"<<endl;
-                for(int listEach=0; listEach<studentBucket; listEach++ ){
-                    cout<<listEach<<endl;
+                for(int listEach=0; listEach<studentPosition; listEach++  ){
                     cout<<eachStudent[listEach].GetID()<<"  "<<eachStudent[listEach].GetName()<<" "<<" "<<eachStudent[listEach].GetCitizenID()<<" "<<eachStudent[listEach].GetMark()<<endl;
                 }
-                cout<<studentPosition<<" "<<studentBucket<<endl;
                 break;
             case 4  :
                 cout<<"******** Let us List all Teachers          **********"<<endl;
-                
-                
-                
+                for(int listEach=0; listEach<teacherPosition; listEach++  ){
+                    cout<<eachTeacher[listEach].GetID()<<"  "<<eachTeacher[listEach].GetName()<<" "<<" "<<eachTeacher[listEach].GetCitizenID()<<" "<<eachTeacher[listEach].GetSalary()<<endl;
+                }
                 break;
             case 5  :
+                cout<<"***** Let us List all Teachers  and Students    *****"<<endl;
+                cout<<"******** Students     **********"<<endl;
+                for(int listEach=0; listEach<studentPosition; listEach++  ){
+                    cout<<eachStudent[listEach].GetID()<<"  "<<eachStudent[listEach].GetName()<<" "<<" "<<eachStudent[listEach].GetCitizenID()<<" "<<eachStudent[listEach].GetMark()<<endl;
+                }
+                cout<<"******** Teachers     **********"<<endl;
+                for(int listEach=0; listEach<teacherPosition; listEach++  ){
+                    cout<<eachTeacher[listEach].GetID()<<"  "<<eachTeacher[listEach].GetName()<<" "<<" "<<eachTeacher[listEach].GetCitizenID()<<" "<<eachTeacher[listEach].GetSalary()<<endl;
+                }
                 break;
             default :
                 exit(0);
         }
     }
-    
-    
-    
 }
